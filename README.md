@@ -71,6 +71,23 @@ Reboot:
 
 `sudo reboot`
 
-Monitor dhcp requests from wifi clients:
+Monitor DHCP requests from wifi clients:
+
+`journalctl -u dnsmasq -f`
+
+### Install influxdb
+
+```
+echo "deb https://repos.influxdata.com/ubuntu bionic stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+sudo curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+sudo apt-get install influxdb
+sudo systemctl enable --now influxdb
+```
+
+Create a database named iot:
+
+curl -i -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE iot"
+
+Monitor influxdb activity:
 
 `journalctl -u dnsmasq -f`
