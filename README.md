@@ -7,6 +7,7 @@
 Install ubuntu server 20.04 LTS with Raspberry Pi Imager
 
 Default username/password after install is ubuntu/ubuntu
+Default hostname is ubuntu
 
 ### Set up private wireless network on wlan0
 
@@ -30,7 +31,7 @@ interface wlan0
 static ip_address=192.168.131.1/24
 ```
 
-Edit contents of /etc/hostapd/hostapd.conf
+Edit contents of /etc/hostapd/hostapd.conf:
 
 ```
 interface=wlan0
@@ -57,3 +58,19 @@ Edit contents of /etc/dnsmasq.conf:
 interface=wlan0
 dhcp-range=192.168.131.2,192.168.131.254,24h
 ```
+
+Disable systemd-resolved:
+
+```
+sudo systemctl stop system-resolved
+sudo systemctl disable system-resolved
+sudo systemctl mask system-resolved
+```
+
+Reboot:
+
+`sudo reboot`
+
+Monitor dhcp requests from wifi clients:
+
+`journalctl -u dnsmasq -f`
