@@ -91,3 +91,31 @@ curl -i -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE i
 Monitor influxdb activity:
 
 `journalctl -u dnsmasq -f`
+
+
+### Install grafana
+
+```
+sudo apt-get install -y apt-transport-https
+sudo apt-get install -y software-properties-common wget
+wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list 
+sudo apt-get update
+sudo apt-get install grafana
+```
+
+Start the grafana server:
+```
+sudo systemctl daemon-reload
+sudo systemctl start grafana-server
+sudo systemctl status grafana-server
+```
+
+Check it has started (navigate to http://ip-address:3000, initial account is admin/admin).
+
+Configure to start up
+```
+sudo systemctl enable grafana-server.service
+```
+
+Configure grafana by adding an influxdb data source with URL http://localhost:8086 and server access, then explore the data and create dashboards as required.
