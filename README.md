@@ -18,7 +18,7 @@ Edit /etc/hosts and add
 Install access point and dns server and switch it off to configure:
 
 ```
-ubuntu$ sudo apt-get install dnsmasq hostapd dhcpcd
+ubuntu$ sudo apt-get install dnsmasq hostapd dhcpcd5
 ubuntu$ sudo systemctl stop dnsmasq
 ubuntu$ sudo systemctl stop hostapd
 ubuntu$ sudo systemctl stop dhcpcd
@@ -62,9 +62,17 @@ dhcp-range=192.168.131.2,192.168.131.254,24h
 Disable systemd-resolved:
 
 ```
-sudo systemctl stop system-resolved
-sudo systemctl disable system-resolved
-sudo systemctl mask system-resolved
+sudo systemctl stop systemd-resolved
+sudo systemctl disable systemd-resolved
+sudo systemctl mask systemd-resolved
+```
+
+Enable hostapd
+
+```
+sudo systemctl unmask hostapd
+sudo systemctl enable hostapd
+sudo systemctl start hostapd
 ```
 
 Reboot:
