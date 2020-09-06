@@ -98,7 +98,7 @@ curl -i -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE i
 
 Monitor influxdb activity:
 
-`journalctl -u dnsmasq -f`
+`journalctl -u influxdb -f`
 
 
 ### Install grafana
