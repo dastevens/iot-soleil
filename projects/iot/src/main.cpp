@@ -1,10 +1,10 @@
 #include <Arduino.h>
+#include <Adafruit_Sensor.h>
+#include <DHT.h>
 
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <wifi.h>
-
-#include <DHT.h>
 
 #include "secrets.h"
 
