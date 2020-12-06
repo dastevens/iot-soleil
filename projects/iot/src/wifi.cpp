@@ -1,12 +1,9 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
+#include "secrets.h"
 
 #define CONNECTION_TIMEOUT_MS 10000
 #define CONNECTION_CHECK_MS 200
-
-#include "secrets.h"
-const char *ssid     = SECRET_SSID;
-const char *password = SECRET_PASSWORD;
 
 void configureWifi() {
   Serial.println("Configuring Wifi...");
