@@ -29,8 +29,9 @@ bool enableWifi() {
     delay(CONNECTION_CHECK_MS);
     if (WiFi.status() == WL_CONNECTED) {
       Serial.println("");
-      Serial.println("Wifi enabled");
-      return true;
+      Serial.print("Wifi connected with address ");
+      Serial.println(WiFi.localIP());
+       return true;
     }
     Serial.print(".");
   }
